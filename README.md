@@ -13,7 +13,7 @@ build.bat
 
 工具 -> NuGet 包管理器 -> 管理解决方案的NuGet程序包 -> 浏览
 
-输入protobuf
+输入protobuf 选择对应的版本
 ## Contacts
 [![Join the chat](https://badges.gitter.im/brinkqiang/dmcsharp/Lobby.svg)](https://gitter.im/brinkqiang/dmcsharp)
 
