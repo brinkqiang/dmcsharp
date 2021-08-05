@@ -1,7 +1,6 @@
 using System;  //Using 关键字, System命名空间！
 using System.IO;
 using System.Text;
-using Google.Protobuf;
 
 namespace HelloWorldApplication //namespace声明命名空间,包含一个helloworld的类！
 {
@@ -15,12 +14,16 @@ namespace HelloWorldApplication //namespace声明命名空间,包含一个hello
             CDMRC oArc4 = new CDMRC();
             oArc4.SetKey("1234");
 
-            string strInput = "data\0d";
+            string strInput = "data1234";
 
             byte[] InArray = System.Text.Encoding.ASCII.GetBytes(strInput);
             byte[] OutArray = System.Text.Encoding.ASCII.GetBytes(strInput);
 
             oArc4.Encrypt(InArray, 0, OutArray, 0, InArray.Length);
+
+            var hexString = BitConverter.ToString(OutArray);
+            Console.WriteLine(hexString);
+
             oArc4.Decrypt(OutArray, 0, InArray, 0, OutArray.Length);
 
             string strOut = System.Text.Encoding.ASCII.GetString(InArray);
@@ -32,22 +35,6 @@ namespace HelloWorldApplication //namespace声明命名空间,包含一个hello
             string strOut2 = System.Text.Encoding.ASCII.GetString(InArray);
 
             Console.WriteLine(strOut2);
-
-            Db.fd_task task = new Db.fd_task
-            {
-                TaskId = 1001,
-                Count = 1,
-                State = 1,
-            };
-
-            byte[] buffer = task.ToByteArray();
-
-            oArc4.Encrypt(buffer, 0, buffer, 0, buffer.Length);
-            oArc4.Decrypt(buffer, 0, buffer, 0, buffer.Length);
-
-            Db.fd_task copyTask = Db.fd_task.Parser.ParseFrom(buffer);
-
-            Console.WriteLine(copyTask.ToString());
         }
     }
 }
