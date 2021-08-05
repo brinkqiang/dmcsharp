@@ -51,12 +51,7 @@ public class CDMRC
         SetEncryptKey(key, keylen);
         SetDecryptKey(key, keylen);
     }
-    public void SetKey(string key)
-    {
-        byte[] key2 = System.Text.Encoding.ASCII.GetBytes(key);
-        SetEncryptKey(key2, key2.Length);
-        SetDecryptKey(key2, key2.Length);
-    }
+
     public void SetEncryptKey(byte[] key, int keylen)
     {
         int i, j, a;
@@ -111,6 +106,22 @@ public class CDMRC
         }
     }
 
+    public void SetEncryptKey(string key)
+    {
+        byte[] key2 = System.Text.Encoding.ASCII.GetBytes(key);
+        SetEncryptKey(key2, key2.Length);
+    }
+    public void SetDecryptKey(string key)
+    {
+        byte[] key2 = System.Text.Encoding.ASCII.GetBytes(key);
+        SetDecryptKey(key2, key2.Length);
+    }
+    public void SetKey(string key)
+    {
+        byte[] key2 = System.Text.Encoding.ASCII.GetBytes(key);
+        SetEncryptKey(key2, key2.Length);
+        SetDecryptKey(key2, key2.Length);
+    }
     static int arc4_crypt(arc4_context ctx, byte[] input, int iOffset, byte[] output, int oOffset, int length)
     {
         int x, y, a, b;
