@@ -12,20 +12,18 @@ include(CSharpUtilities)
 set(CMAKE_CSharp_FLAGS "/langversion:latest")
 
 FILE(GLOB_RECURSE SRC_SOURCES
-  src/main.cs
-  src/proto/Person.cs
+  src/*.cs
 )
 
 csharp_set_designer_cs_properties(
-  src/main.cs
-  src/proto/Person.cs
+  ${SRC_SOURCES}
 )
 
 add_executable(dmsharp ${SRC_SOURCES})
 
 set_property(TARGET dmsharp PROPERTY VS_DOTNET_TARGET_FRAMEWORK_VERSION "v4.6.1")
 set_property(TARGET dmsharp PROPERTY WIN32_EXECUTABLE TRUE)
-set_property(TARGET dmsharp PROPERTY VS_CSHARP_DependentUpon src/main.cs src/proto/Person.cs)
+set_property(TARGET dmsharp PROPERTY VS_CSHARP_DependentUpon ${SRC_SOURCES})
 
 set_property(TARGET dmsharp PROPERTY VS_DOTNET_REFERENCES
 	"Google.Protobuf"
