@@ -21,7 +21,8 @@ namespace HelloWorldApplication //namespace声明命名空间,包含一个hello
 
             oArc4.Encrypt(InArray, 0, OutArray, 0, InArray.Length);
 
-            var hexString = BitConverter.ToString(OutArray);
+            var hexString = BitConverter.ToString(OutArray).Replace("-", "");
+
             Console.WriteLine(hexString);
 
             oArc4.Decrypt(OutArray, 0, InArray, 0, OutArray.Length);
