@@ -12,30 +12,37 @@ namespace HelloWorldApplication //namespace声明命名空间,包含一个hello
         {
             /* 我的第一个 C# 程序 */
             CDMRC oArc4 = new CDMRC();
-            oArc4.SetKey("1234");
+            {
+                oArc4.SetKey("31323334");
 
-            string strInput = "data1234";
+                byte[] InArray = { 0x08, 0x01 };
 
-            byte[] InArray = System.Text.Encoding.ASCII.GetBytes(strInput);
-            byte[] OutArray = System.Text.Encoding.ASCII.GetBytes(strInput);
+                byte[] OutArray = { 0x00, 0x00 };
 
-            oArc4.Encrypt(InArray, 0, OutArray, 0, InArray.Length);
+                oArc4.Encrypt(InArray, 0, OutArray, 0, InArray.Length);
 
-            var hexString = BitConverter.ToString(OutArray).Replace("-", "");
+                var hexString = BitConverter.ToString(OutArray).Replace("-", "");
 
-            Console.WriteLine(hexString);
+                Console.WriteLine(hexString);
 
-            oArc4.Decrypt(OutArray, 0, InArray, 0, OutArray.Length);
+                oArc4.Decrypt(OutArray, 0, InArray, 0, InArray.Length);
+            }
 
-            string strOut = System.Text.Encoding.ASCII.GetString(InArray);
-            Console.WriteLine(strOut);
+            {
+                oArc4.SetKey("31323334");
 
-            oArc4.Encrypt(InArray);
-            oArc4.Decrypt(InArray);
+                byte[] InArray = { 0x08, 0x01 };
 
-            string strOut2 = System.Text.Encoding.ASCII.GetString(InArray);
+                byte[] OutArray = { 0x00, 0x00 };
 
-            Console.WriteLine(strOut2);
+                oArc4.Encrypt(InArray, 0, OutArray, 0, InArray.Length);
+
+                var hexString = BitConverter.ToString(OutArray).Replace("-", "");
+
+                Console.WriteLine(hexString);
+
+                oArc4.Decrypt(OutArray, 0, InArray, 0, InArray.Length);
+            }
         }
     }
 }
