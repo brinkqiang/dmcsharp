@@ -9,7 +9,7 @@ ModuleSetCompileOptions()
 
 include(CSharpUtilities)
 
-set(CMAKE_CSharp_FLAGS "/langversion:latest")
+set(CMAKE_CSharp_FLAGS "/langversion:latest /platform:x64")
 
 FILE(GLOB_RECURSE SRC_SOURCES
   src/*.cs
